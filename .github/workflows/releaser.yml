@@ -32,9 +32,7 @@ jobs:
         mkdir pack/AviUtl1
         mkdir pack/AviUtl2
         cp *.anm2 pack/AviUtl2
-        cp *.scn2 pack/AviUtl2
         cp *.anm pack/AviUtl1
-        cp *.scn pack/AviUtl1
         cp *.lua pack/AviUtl1
         cp *.frag pack/AviUtl1
         cp *.md pack
