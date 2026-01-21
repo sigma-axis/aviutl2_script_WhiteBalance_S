@@ -23,7 +23,7 @@ SOFTWARE.
 https://mit-license.org/
 ]]
 @ホワイトバランスσ
---information:ホワイトバランスσ@WhiteBalance_S v1.00-beta1 (for beta27) by σ軸
+--information:ホワイトバランスσ@WhiteBalance_S v1.00 (for beta29) by σ軸
 --label:色調整
 --filter
 --track@rate:強さ,0,100,100,0.01
@@ -202,7 +202,7 @@ if comp1 ~= 1 or comp2 ~= 1 or comp3 ~= 1 then
 end
 
 @色温度σ
---information:色温度σ@WhiteBalance_S v1.00-beta1 (for beta27) by σ軸
+--information:色温度σ@WhiteBalance_S v1.00 (for beta29) by σ軸
 --label:色調整
 --filter
 --track@temp_base:変換元K,1666.67,25000,6500,0.01
@@ -270,7 +270,7 @@ obj.effect("ホワイトバランスσ@WhiteBalance_S", "PI", ("space=%q,col_des
 	space, 100 * x2 / x1, 100 * y2 / y1, 100 * z2 / z1));
 
 @色温度σ(Mired)
---information:色温度σ(Mired)@WhiteBalance_S v1.00-beta1 (for beta27) by σ軸
+--information:色温度σ(Mired)@WhiteBalance_S v1.00 (for beta29) by σ軸
 --label:色調整
 --filter
 --track@mired_base:変換元M,40,600,154,0.001
