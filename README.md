@@ -4,11 +4,11 @@
 
 無印の AviUtl と AviUtl ExEdit2 の両方に対応しています．
 
-TODO: sample images
+[ダウンロードはこちら．](https://github.com/sigma-axis/aviutl2_script_WhiteBalance_S/releases) \[紹介動画準備中．\]
+
+<img width="1520" height="880" alt="Original photo and two of its copies, whose color temperatures are adjusted" src="https://github.com/user-attachments/assets/0b044b5e-7ba4-4677-971f-946e2d01c59c" />
 
 - 元画像: https://www.pexels.com/photo/assorted-color-kittens-45170
-
-[ダウンロードはこちら．](https://github.com/sigma-axis/aviutl2_script_WhiteBalance_S/releases) \[紹介動画準備中．\]
 
 ##  動作要件
 
