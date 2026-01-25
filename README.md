@@ -58,6 +58,13 @@
   初期状態だと「フィルタ効果を追加」メニューの「色調整」以下に各種フィルタ効果が追加されています．
   - 「オブジェクト追加メニューの設定」や「トラックバー移動メニューの設定」の「ラベル」項目で分類を変更できます．
 
+### For non-Japanese speaking users (only AviUtl2)
+
+You may be able to find language translation file for this script from [this repository](https://github.com/sigma-axis/aviutl2_translations_sigma-axis). 
+Translation files enable names and parameters of the scripts / filters to be displayed in other languages.
+
+Although, usage documentations for this script in languages other than Japanese are not available now.
+
 ##  ホワイトバランスσ
 
 色を 2 色指定して，指定色をもう 1 つの色に変化させるようにホワイトバランスを調整します．
