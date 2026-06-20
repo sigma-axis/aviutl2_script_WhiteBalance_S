@@ -23,15 +23,16 @@ SOFTWARE.
 https://mit-license.org/
 ]]
 @ホワイトバランスσ
---information:ホワイトバランスσ@WhiteBalance_S v1.00 (for beta29) by σ軸
+--information:ホワイトバランスσ@WhiteBalance_S v1.01-dev (for beta51) by σ軸
 --label:色調整
 --filter
+--require:2005000
 --track@rate:強さ,0,100,100,0.01
 --color@col_base:変換元,0xffffff
 --color@col_dest:変換先,0xffffff
---check@normalize:正規化,true
+--checksection@normalize:正規化,true,false
 --group:成分個別指定,false
---check@col_indiv:成分を個別に指定,false
+--checksection@col_indiv:成分を個別に指定,false,false
 --track@comp1:倍率X/R,0,200,100,0.01
 --track@comp2:倍率Y/G,0,200,100,0.01
 --track@comp3:倍率Z/B,0,200,100,0.01
@@ -46,7 +47,7 @@ cbuffer constant0 : register(b0) {
 };
 float4 by_rgb(float4 pos : SV_Position) : SV_Target
 {
-	float4 c = src.Load(int3(pos.xy, 0));
+	float4 c = src[pos.xy];
 	c.rgb *= rate;
 	return c;
 }
@@ -79,7 +80,7 @@ float3 from_xyz(float3 c)
 }
 float4 by_xyz(float4 pos : SV_Position) : SV_Target
 {
-	float4 c = src.Load(int3(pos.xy, 0));
+	float4 c = src[pos.xy];
 	c.rgb = c.a > 0 ? c.rgb / c.a : 1;
 	c.xyz = to_xyz(c.rgb);
 	c.xyz *= rate;
@@ -202,9 +203,10 @@ if comp1 ~= 1 or comp2 ~= 1 or comp3 ~= 1 then
 end
 
 @色温度σ
---information:色温度σ@WhiteBalance_S v1.00 (for beta29) by σ軸
+--information:色温度σ@WhiteBalance_S v1.01-dev (for beta51) by σ軸
 --label:色調整
 --filter
+--require:2005000
 --track@temp_base:変換元K,1666.67,25000,6500,0.01
 --track@temp_dest:変換先K,1666.67,25000,6500,0.01
 --select@space:色空間=0,XYZ=0,RGB=1
@@ -270,9 +272,10 @@ obj.effect("ホワイトバランスσ@WhiteBalance_S", "PI", ("space=%q,col_des
 	space, 100 * x2 / x1, 100 * y2 / y1, 100 * z2 / z1));
 
 @色温度σ(Mired)
---information:色温度σ(Mired)@WhiteBalance_S v1.00 (for beta29) by σ軸
+--information:色温度σ(Mired)@WhiteBalance_S v1.01-dev (for beta51) by σ軸
 --label:色調整
 --filter
+--require:2005000
 --track@mired_base:変換元M,40,600,154,0.001
 --track@mired_dest:変換先M,40,600,154,0.001
 --select@space:色空間=0,XYZ=0,RGB=1
