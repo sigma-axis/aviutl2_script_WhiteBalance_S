@@ -6,7 +6,7 @@
 
 [ダウンロードはこちら．](https://github.com/sigma-axis/aviutl2_script_WhiteBalance_S/releases) [紹介動画．](https://www.nicovideo.jp/watch/sm45861771)
 
-<img width="1520" height="880" alt="Original photo and two of its copies, whose color temperatures are adjusted" src="https://github.com/user-attachments/assets/0b044b5e-7ba4-4677-971f-946e2d01c59c" />
+![ホワイトバランス調整のデモ画像](https://github.com/user-attachments/assets/74f82234-fa60-4ae8-8a6b-f4154828cc47)
 
 - 元画像: https://www.pexels.com/photo/assorted-color-kittens-45170
 
