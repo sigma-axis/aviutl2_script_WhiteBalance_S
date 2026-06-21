@@ -89,7 +89,7 @@ float4 by_xyz(float4 pos : SV_Position) : SV_Target
 	return c;
 }
 ]]
-local obj, math, bit, tonumber, type = obj, math, bit, tonumber, type;
+local obj, math, bit_band, tonumber, type = obj, math, bit.band, tonumber, type;
 
 -- take parameters.
 --[==[
@@ -138,13 +138,13 @@ space = math.min(math.max(math.floor(0.5 + space), 0), 1);
 if not col_indiv then
 	if col_base == col_dest then return end
 	local c1, c2, c3 =
-		bit.band(col_base, 0xff0000) / 0xff0000,
-		bit.band(col_base, 0x00ff00) / 0x00ff00,
-		bit.band(col_base, 0x0000ff) / 0x0000ff;
+		bit_band(col_base, 0xff0000) / 0xff0000,
+		bit_band(col_base, 0x00ff00) / 0x00ff00,
+		bit_band(col_base, 0x0000ff) / 0x0000ff;
 	comp1, comp2, comp3 =
-		bit.band(col_dest, 0xff0000) / 0xff0000,
-		bit.band(col_dest, 0x00ff00) / 0x00ff00,
-		bit.band(col_dest, 0x0000ff) / 0x0000ff;
+		bit_band(col_dest, 0xff0000) / 0xff0000,
+		bit_band(col_dest, 0x00ff00) / 0x00ff00,
+		bit_band(col_dest, 0x0000ff) / 0x0000ff;
 
 	local t1, t2, t3, t4, m = 0.04045, 12.92, 0.055, 2.4, {
 		0.4124, 0.3576, 0.1805;
@@ -207,8 +207,8 @@ end
 --label:WhiteBalance_S
 --filter
 --require:2005000
---track@temp_base:変換元K,1666.67,25000,6500,0.01
---track@temp_dest:変換先K,1666.67,25000,6500,0.01
+--track@temp_base:変換元K,1666.67,25000,6500,0.01,,0.4
+--track@temp_dest:変換先K,1666.67,25000,6500,0.01,,0.4
 --select@space:色空間=0,XYZ=0,RGB=1
 --group:その他,false
 --value@PI:PI,{}

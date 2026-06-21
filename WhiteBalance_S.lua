@@ -30,7 +30,7 @@ https://mit-license.org/
 --------------------------------
 
 local GLShaderKit = require "GLShaderKit";
-local obj, tonumber, math, bit, unpack = obj, tonumber, math, bit, unpack;
+local obj, tonumber, math, bit_band = obj, tonumber, math, bit.band;
 
 local function error_mod(message)
 	message = "WhiteBalance_S.lua: "..message;
@@ -126,13 +126,13 @@ local function apply_white_balance(rate, comp1, comp2, comp3, col_indiv, col_des
 	if not col_indiv then
 		if col_base == col_dest then return end
 		local c1, c2, c3 =
-			bit.band(col_base, 0xff0000) / 0xff0000,
-			bit.band(col_base, 0x00ff00) / 0x00ff00,
-			bit.band(col_base, 0x0000ff) / 0x0000ff;
+			bit_band(col_base, 0xff0000) / 0xff0000,
+			bit_band(col_base, 0x00ff00) / 0x00ff00,
+			bit_band(col_base, 0x0000ff) / 0x0000ff;
 		comp1, comp2, comp3 =
-			bit.band(col_dest, 0xff0000) / 0xff0000,
-			bit.band(col_dest, 0x00ff00) / 0x00ff00,
-			bit.band(col_dest, 0x0000ff) / 0x0000ff;
+			bit_band(col_dest, 0xff0000) / 0xff0000,
+			bit_band(col_dest, 0x00ff00) / 0x00ff00,
+			bit_band(col_dest, 0x0000ff) / 0x0000ff;
 
 		local t1, t2, t3, t4, m = 0.04045, 12.92, 0.055, 2.4, {
 			0.4124, 0.3576, 0.1805;
