@@ -14,9 +14,47 @@ permissions:
   contents: read
 
 jobs:
+  build:
+    name: Build with aulua
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Setup aulua
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$(gh api repos/karoterra/aviutl2-aulua/releases/latest --jq '.tag_name')
+          archive="aulua-${tag}-windows-x64.zip"
+          mkdir -p aulua
+          gh release download -R karoterra/aviutl2-aulua $tag -p $archive -D aulua
+          unzip aulua/$archive -d aulua
+          echo `pwd`/aulua > $GITHUB_PATH
+
+      - name: Create package
+        run: |
+          aulua pack
+        # mkdir -p ./build
+        # sed 's/\${ver}/${{ github.ref_name }}/g' ./Tooltip.aul2 > ./build/Default.${{ env.REPOSITORY_NAME }}.aul2
+        # aulua language update
+
+      - name: Upload the build as artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          path: build/package.au2pkg.zip
+          archive: false
+
   release:
     name: Create Release
     if: github.event_name == 'push' && github.ref_type == 'tag'
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -26,37 +64,37 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Set package version
+      - name: Set package version (AviUtl 1)
         run: |
-          cd assets
-          sed -i 's/\${ver}/${{ github.ref_name }}/g' package.ini
-          cd ..
-          for f in ${{ env.REPOSITORY_NAME }}.anm ${{ env.REPOSITORY_NAME }}.lua ${{ env.REPOSITORY_NAME }}.frag; do
-            sed -i 's/\${ver}/${{ github.ref_name }}/1' "$f"
+          cd script/au1
+          for f in '@WhiteBalance_S.anm' 'WhiteBalance_S.lua' 'WhiteBalance_S.frag'; do
+            [ -f "$f" ] || continue
+            sed -i 's/\${ver}/${{ github.ref_name }}/g' "$f"
           done
 
       - name: Pack and compress (AviUtl 1)
         run: |
           mkdir -p pack_au1
-          cp *.anm pack_au1
-          cp *.lua pack_au1
-          cp *.frag pack_au1
+          cp script/au1/*.anm pack_au1
+          cp script/au1/*.lua pack_au1
+          cp script/au1/*.frag pack_au1
           cp *.md pack_au1
           cp LICENSE pack_au1
           cd pack_au1
           zip -r ../aviutl_script_${{ env.REPOSITORY_NAME }}-${{ github.ref_name }}.zip *
         # rename .zip file for downloading if necessary.
 
-      - name: Pack and compress (AviUtl 2)
+      - name: Download the package as an artifact (AviUtl 2)
+        uses: actions/download-artifact@v8
+        with:
+          path: pack_au2
+          merge-multiple: true # assuming a single artifact.
+          skip-decompress: true
+
+      - name: Prepare package (AviUtl 2)
         run: |
-          mkdir -p pack_au2/Script/${{ env.REPOSITORY_NAME }}
-          cp *.anm2 pack_au2/Script
-          cp *.md pack_au2/Script/${{ env.REPOSITORY_NAME }}
-          cp LICENSE pack_au2/Script/${{ env.REPOSITORY_NAME }}
-          cp assets/package.txt pack_au2
-          cp assets/package.ini pack_au2
           cd pack_au2
-          zip -r ../aviutl2_script_${{ env.REPOSITORY_NAME }}-${{ github.ref_name }}.au2pkg.zip *
+          cp package.au2pkg.zip ../aviutl2_script_${{ env.REPOSITORY_NAME }}-${{ github.ref_name }}.au2pkg.zip
         # rename .zip file for downloading if necessary.
 
       - name: Prepare release notes

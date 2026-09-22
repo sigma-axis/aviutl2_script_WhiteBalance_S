@@ -27,6 +27,8 @@ https://mit-license.org/
 -- VERSION: ${ver}
 --
 
+-- https://github.com/sigma-axis/aviutl2_script_WhiteBalance_S
+
 @ホワイトバランスσ
 --track0:強さ,0,100,100,0.01
 --track1:倍率X/R,0,200,100,0.01

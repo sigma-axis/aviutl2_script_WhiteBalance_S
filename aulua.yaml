@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/karoterra/aviutl2-aulua/refs/heads/main/schema/aulua.schema.json
+project:
+  variables:
+    NAME: WhiteBalance_S
+    AUTHOR: σ軸
+    PUBLISH_PAGE: https://github.com/sigma-axis/aviutl2_script_WhiteBalance_S
+    LEAST_AVIUTL_VERSION: "2011000"
+    LEAST_AVIUTL_VERSION_STRING: "2.1.10"
+
+package:
+  id: WhiteBalance_S
+  name: ホワイトバランス調整スクリプト WhiteBalance_S
+  version: v1.10-wip
+  information: "{name} {version} by {AUTHOR}"
+  script_sub_dir: ""
+  uninstall_sub_folder_file: false
+  message:
+    text: |
+      # ホワイトバランス調整スクリプト WhiteBalance_S
+
+      画像のホワイトバランスや色温度を調整スクリプトです．
+
+      公開ページ:
+      https://github.com/sigma-axis/aviutl2_script_WhiteBalance_S
+
+      紹介動画:
+      https://www.nicovideo.jp/watch/sm45861771
+
+      お願い:
+      ニコニコ動画での親作品登録をしていただけると励みになります．
+      作品 ID: sm45861771
+
+  assets:
+    - src: README.md
+      dest: Script/{id}/README.md
+    - src: LICENSE
+      dest: Script/{id}/LICENSE
+  file_name: package.au2pkg.zip
+
+build:
+  out_dir: build
+
+scripts:
+  - name: "@WhiteBalance_S.anm2"
+    sources:
+      - path: script/au2/preamble.lua
+      - label: ホワイトバランスσ
+        path: script/au2/ホワイトバランスσ/main.lua
+      - label: 色温度σ
+        path: script/au2/色温度σ/main.lua
+      - label: 色温度σ(Mired)
+        path: script/au2/色温度σ(Mired)/main.lua
+
+# language:
+#   files:
+#     - path: build/Default.WhiteBalance_S.aul2
+#       text: false
+#       tooltip: true

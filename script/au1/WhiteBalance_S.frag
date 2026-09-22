@@ -27,6 +27,8 @@ https://mit-license.org/
 // VERSION: ${ver}
 //
 
+// https://github.com/sigma-axis/aviutl2_script_WhiteBalance_S
+
 ////////////////////////////////
 #version 460 core
 
