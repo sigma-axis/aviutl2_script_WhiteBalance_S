@@ -5,19 +5,21 @@
 ---$track:強さ, min = 0, max = 100, step = 0.01
 local rate = 100
 
----$color:変換元
-local col_base = 0xffffff
-
----$color:変換先
-local col_dest = 0xffffff
-
----$checksection:正規化
-local normalize = true
-
---group:成分個別指定,false
 ---$checksection:成分を個別に指定
 local col_indiv = false
 
+---$color:変換元
+local col_base = 0xffffff
+
+--hide@col_base:col_indiv==1
+---$color:変換先
+local col_dest = 0xffffff
+
+--hide@col_dest:col_indiv==1
+---$checksection:正規化
+local normalize = true
+
+--hide@normalize:col_indiv==1
 ---$track:倍率X/R, min = 0, max = 200, step = 0.01
 local comp1 = 100
 

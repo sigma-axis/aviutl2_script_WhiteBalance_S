@@ -8,6 +8,22 @@ local temp_base = 6500
 ---$track:変換先K, min = 1666.67, max = 25000, step = 0.01, scale = 0.4
 local temp_dest = 6500
 
+---$track:変換元M, min = 40, max = 600, step = 0.001
+local mired_base = 154
+
+---$track:変換先M, min = 40, max = 600, step = 0.001
+local mired_dest = 154
+
+---$nolang: options
+---$select:単位
+---K = 0
+---Mired = 1
+local unit = 0
+
+--hide@temp_base:unit~=0
+--hide@temp_dest:unit~=0
+--hide@mired_base:unit==0
+--hide@mired_dest:unit==0
 ---$nolang: options
 ---$select:色空間
 ---XYZ = 0
@@ -19,6 +35,9 @@ local space = 0
 ---$tips:PI = {
 ---     :  temp_base: number?,
 ---     :  temp_dest: number?,
+---     :  mired_base: number?,
+---     :  mired_dest: number?,
+---     :  unit: string?
 ---     :  space: string?,
 ---     :}
 ---$value:PI
@@ -31,6 +50,12 @@ local obj, math, tonumber = obj, math, tonumber;
 -- take parameters.
 temp_base = tonumber(PI.temp_base) or temp_base;
 temp_dest = tonumber(PI.temp_dest) or temp_dest;
+mired_base = tonumber(PI.mired_base) or mired_base;
+mired_dest = tonumber(PI.mired_dest) or mired_dest;
+if type(PI.unit) == "string" then
+	local name2num = { ["K"] = 0, ["Mired"] = 1 };
+	unit = name2num[PI.unit] or unit;
+end
 local space_name;
 if type(PI.space) == "string" then space_name = PI.space;
 else
@@ -39,6 +64,11 @@ else
 end
 
 -- normalize parameters.
+if unit == 1 then
+	mired_base = math.min(math.max(mired_base, 40), 600);
+	mired_dest = math.min(math.max(mired_dest, 40), 600);
+	temp_base, temp_dest = 10 ^ 6 / mired_base, 10 ^ 6 / mired_dest;
+end
 temp_base = math.min(math.max(temp_base, 1666.67), 25000);
 temp_dest = math.min(math.max(temp_dest, 1666.67), 25000);
 if temp_base == temp_dest then return end

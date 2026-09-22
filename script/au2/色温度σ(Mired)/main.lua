@@ -1,7 +1,9 @@
---information:色温度σ(Mired)@WhiteBalance_S ${PACKAGE_VERSION} by ${AUTHOR}
+-- 非推奨化に伴い，このスクリプトは更新凍結 / information も固定．
+--hidemenu
+--information:色温度σ(Mired)@WhiteBalance_S v1.10 by σ軸
 --label:WhiteBalance_S
 --filter
---require:${LEAST_AVIUTL_VERSION}
+--require:2011000
 ---$track:変換元M, min = 40, max = 600, step = 0.001
 local mired_base = 154
 
@@ -46,5 +48,6 @@ if mired_base == mired_dest then return end
 --#endregion PI / normalize parameters.
 
 -- apply effect.
-obj.effect("色温度σ@WhiteBalance_S", "PI", ("space=%q,temp_base=%s,temp_dest=%s"):format(
-	space_name, 10 ^ 6 / mired_base, 10 ^ 6 / mired_dest));
+obj.effect("色温度σ@WhiteBalance_S", "単位", "Mired", "PI",
+	("space=%q,mired_base=%s,mired_dest=%s"):format(
+		space_name, mired_base, mired_dest));
