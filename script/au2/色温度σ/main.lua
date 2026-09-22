@@ -1,4 +1,5 @@
 --information:色温度σ@WhiteBalance_S ${PACKAGE_VERSION} by ${AUTHOR}
+---$script_tips:画像の色温度を指定してホワイトバランスを調整します．
 --label:WhiteBalance_S
 --filter
 --require:${LEAST_AVIUTL_VERSION}
@@ -15,6 +16,7 @@ local mired_base = 154
 local mired_dest = 154
 
 ---$nolang: options
+---$tips:色温度の単位をケルビン単位とミレッド単位の2つから選びます．
 ---$select:単位
 ---K = 0
 ---Mired = 1
@@ -25,6 +27,7 @@ local unit = 0
 --hide@mired_base:unit==0
 --hide@mired_dest:unit==0
 ---$nolang: options
+---$tips:色変換の計算を行う座標系
 ---$select:色空間
 ---XYZ = 0
 ---RGB = 1

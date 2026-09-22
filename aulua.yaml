@@ -51,8 +51,8 @@ scripts:
       - label: 色温度σ(Mired)
         path: script/au2/色温度σ(Mired)/main.lua
 
-# language:
-#   files:
-#     - path: build/Default.WhiteBalance_S.aul2
-#       text: false
-#       tooltip: true
+language:
+  files:
+    - path: build/Default.WhiteBalance_S.aul2
+      text: false
+      tooltip: true

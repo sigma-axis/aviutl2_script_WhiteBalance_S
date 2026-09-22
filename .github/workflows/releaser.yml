@@ -40,10 +40,10 @@ jobs:
 
       - name: Create package
         run: |
+          mkdir -p ./build
+          sed 's/\${ver}/${{ github.ref_name }}/g' ./Tooltip.aul2 > ./build/Default.${{ env.REPOSITORY_NAME }}.aul2
+          aulua language update
           aulua pack
-        # mkdir -p ./build
-        # sed 's/\${ver}/${{ github.ref_name }}/g' ./Tooltip.aul2 > ./build/Default.${{ env.REPOSITORY_NAME }}.aul2
-        # aulua language update
 
       - name: Upload the build as artifacts
         uses: actions/upload-artifact@v7

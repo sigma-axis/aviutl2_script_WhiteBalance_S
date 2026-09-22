@@ -1,4 +1,5 @@
 --information:ホワイトバランスσ@WhiteBalance_S ${PACKAGE_VERSION} by ${AUTHOR}
+---$script_tips:2色を指定して，一方の色をもう一方に変化させるようホワイトバランスを調整します．色成分の倍率を個別に指定することもできます．
 --label:WhiteBalance_S
 --filter
 --require:${LEAST_AVIUTL_VERSION}
@@ -16,6 +17,7 @@ local col_base = 0xffffff
 local col_dest = 0xffffff
 
 --hide@col_dest:col_indiv==1
+---$tips:変換元と変換先が同じ輝度を持つように正規化します．
 ---$checksection:正規化
 local normalize = true
 
@@ -34,6 +36,7 @@ local comp3 = 100
 --hide@comp3:col_indiv==0
 --group
 ---$nolang: options
+---$tips:色変換の計算を行う座標系
 ---$select:色空間
 ---XYZ = 0
 ---RGB = 1

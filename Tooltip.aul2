@@ -1,0 +1,10 @@
+; Tooltip definitions
+;===============================================================
+; Target: WhiteBalance_S (https://github.com/sigma-axis/aviutl2_script_WhiteBalance_S)
+; Target Version: ${ver}
+; Language: Default
+
+[Language]
+Information=Default tooltips for WhiteBalance_S ${ver} (日本語)
+
+;===============================================================
