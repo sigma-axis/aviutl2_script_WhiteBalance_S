@@ -10,7 +10,7 @@ project:
 package:
   id: WhiteBalance_S
   name: ホワイトバランス調整スクリプト WhiteBalance_S
-  version: v1.10-wip
+  version: v1.10
   information: "{name} {version} by {AUTHOR}"
   script_sub_dir: ""
   uninstall_sub_folder_file: false
